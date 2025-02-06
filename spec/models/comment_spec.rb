@@ -19,10 +19,16 @@
 #  project_id  (project_id => projects.id)
 #  user_id     (user_id => users.id)
 #
-require "test_helper"
+require 'rails_helper'
 
-class CommentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+RSpec.describe Comment, type: :model do
+  describe 'associations' do
+    it { should belong_to(:project) }
+    it { should belong_to(:user) }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of(:content) }
+  end
 end
+

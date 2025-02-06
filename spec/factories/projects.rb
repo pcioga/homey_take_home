@@ -9,10 +9,9 @@
 #  updated_at         :datetime         not null
 #  project_manager_id :integer
 #
-require "test_helper"
-
-class ProjectTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :project do
+    name { "Project Alpha" }
+    association :project_manager, factory: :user
+  end
 end
