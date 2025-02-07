@@ -1,0 +1,14 @@
+<h1><%= @project.name %></h1>
+<h2><%= @project.description %></h2>
+<h2><%= @project.project_manager.name %></h2>
+<h2>Team Members:</h2>
+<% @project.users.each do |user| %>
+  <%= user.name %>
+<% end %>
+
+<h2>Conversation History</h2>
+
+<h3>Leave a Comment</h3>
+
+<h3>Change Status</h3>
+

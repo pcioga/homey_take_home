@@ -76,6 +76,7 @@ group :test do
   gem "selenium-webdriver"
   gem 'shoulda-matchers', '~> 5.0'
   gem 'faker'
+  gem 'rails-controller-testing'
 end
 
 gem "concurrent-ruby", "= 1.3.4"

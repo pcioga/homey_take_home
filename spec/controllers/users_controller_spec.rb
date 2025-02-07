@@ -31,7 +31,7 @@ RSpec.describe UsersController, type: :controller do
           post :create, params: { user: valid_attributes.merge(email: '') }
         end.not_to change(User, :count)
 
-        expect(controller.instance_variable_get('@user').errors).not_to be_empty
+        expect(assigns(:user).errors).not_to be_empty
       end
     end
   end

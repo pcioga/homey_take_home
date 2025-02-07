@@ -1,0 +1,22 @@
+<h1>New Project</h1>
+<% if @project.errors.any? %>
+  <div class="error">
+    <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+    <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @project do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :user_ids, "Add Team Members" %>
+  <%= f.collection_select :user_ids, @users, :id, :name, {}, { multiple: true } %>
+  <%= f.submit "Create Project" %>
+<% end %>
