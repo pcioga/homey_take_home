@@ -5,23 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header>
-      <% if current_user %>
-        <%= current_user.name %>
-        <%= link_to "Logout", logout_path, data: { turbo_method: :delete } %>
-      <% else %>
-        <%= link_to "Sign Up", signup_path %> |
-        <%= link_to "Login", login_path %>
-      <% end %>
-    </header>
-    
-    <%= yield %>
+  <body class="h-full font-sans bg-gray-50">
+    <%= render 'shared/header' %>
+    <%= render 'shared/flash' %>
+
+    <main class="container mx-auto mt-10 px-5">
+      <%= yield %>
+    </main>
   </body>
 </html>
-

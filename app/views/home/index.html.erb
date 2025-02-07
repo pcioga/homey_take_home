@@ -1,1 +1,9 @@
-<h1>Welcome to the Project Management App</h1>
+<div class="max-w-7xl mx-auto">
+  <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">Welcome to the Project Management App</h1>
+    <p class="text-gray-600 mb-6">Organize your projects, collaborate with your team, and get more done.</p>
+    <% unless current_user %>
+      <%= link_to "Get Started", signup_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700" %>
+    <% end %>
+  </div>
+</div>

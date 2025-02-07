@@ -22,4 +22,8 @@ class Project < ApplicationRecord
   # Validations
   validates :name, presence: true
   validates :project_manager, presence: true
+
+  def status
+    status_changes.order(created_at: :asc)&.last&.status || 'not_started'
+  end
 end

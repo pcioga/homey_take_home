@@ -9,9 +9,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @status = @project.status_changes.order(created_at: :asc)&.last&.status || 'not_started'
-    @comments = @project.comments.order(created_at: :asc)
-    @status_changes = @project.status_changes.order(created_at: :asc)
+    @status = @project.status
+    @comments = @project.comments.order(created_at: :desc)
+    @status_changes = @project.status_changes.order(created_at: :desc)
   end
 
   def new

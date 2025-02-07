@@ -1,8 +1,12 @@
-<%= form_with model: [project, comment] do |form| %>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+<div class="mt-6 bg-white rounded-lg shadow-sm">
+ <%= form_with model: [project, comment], class: "p-4" do |form| %>
+   <div class="mb-4">
+     <%= form.text_area :content, 
+         rows: 3,
+         class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+   </div>
 
-  <%= form.submit "Post Comment" %>
-<% end %>
+   <%= form.submit "Post Comment", 
+       class: "px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 inline-flex" %>
+ <% end %>
+</div>
