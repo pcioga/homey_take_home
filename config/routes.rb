@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
 
   resources :projects, only: %i[index show new create] do
-    resources :comments, only: [:create]
-    resources :status_changes, only: [:create]
+    resources :comments, only: %i[create edit update destroy]
+    resources :status_changes, only: %i[create]
   end
 end

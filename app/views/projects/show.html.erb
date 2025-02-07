@@ -1,6 +1,15 @@
 <h1><%= @project.name %></h1>
 <p><%= @project.description %></p>
+
+<h2>Status</h2>
+<% if @project.project_manager == current_user %>
+  <%= form_with model: [@project, @project.status_changes.new] do |form| %>
+    <%= form.select :status, StatusChange.statuses.keys.map { |s| [s.humanize, s] }, selected: @status %>
+    <%= form.submit "Update Status" %>
+  <% end %>
+<% else %>
 <p><%= @status.humanize %></p>
+<% end %>
 <p><strong>Project Manager:</strong> <%= @project.project_manager.name %></p>
 
 <h2>Team Members</h2>
@@ -16,6 +25,10 @@
     <li>
       <% if item.is_a?(Comment) %>
         <strong><%= item.user.name %></strong>: <%= item.content %>
+        <% if item.user == current_user %>
+          <%= link_to "Edit", edit_project_comment_path(@project, item) %>
+          <%= link_to "Delete", project_comment_path(@project, item), method: :delete, data: { confirm: "Are you sure?", turbo_method: :delete } %>
+        <% end %>
       <% else %>
         <strong><%= item.user.name %></strong> changed the status to <strong><%= item.status.humanize %></strong>.
       <% end %>
@@ -24,16 +37,4 @@
   <% end %>
 </ul>
 
-<h3>Leave a Comment</h3>
-<%= form_with model: [@project, @project.comments.new] do |form| %>
-  <%= form.text_area :content, placeholder: "Your comment" %>
-  <%= form.submit "Post Comment" %>
-<% end %>
-
-<% if @project.project_manager == current_user %>
-  <h3>Change Status</h3>
-  <%= form_with model: [@project, @project.status_changes.new] do |form| %>
-    <%= form.select :status, StatusChange.statuses.keys.map { |s| [s.humanize, s] }, selected: @status %>
-    <%= form.submit "Update Status" %>
-  <% end %>
-<% end %>
+<%= render partial: 'comments/partial/comments_form', locals: {project: @project, comment: @project.comments.new} %>
