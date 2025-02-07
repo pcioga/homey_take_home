@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
@@ -13,9 +15,9 @@ RSpec.describe UsersController, type: :controller do
 
     context 'with valid params' do
       it 'creates a new user and redirects' do
-        expect {
+        expect do
           post :create, params: { user: valid_attributes }
-        }.to change(User, :count).by(1)
+        end.to change(User, :count).by(1)
 
         expect(session[:user_id]).not_to be_nil
         expect(response).to redirect_to(root_path)
@@ -25,11 +27,11 @@ RSpec.describe UsersController, type: :controller do
 
     context 'with invalid params' do
       it 'does not create a new user and renders new template' do
-        expect {
+        expect do
           post :create, params: { user: valid_attributes.merge(email: '') }
-        }.not_to change(User, :count)
+        end.not_to change(User, :count)
 
-        expect(controller.instance_variable_get("@user").errors).not_to be_empty
+        expect(controller.instance_variable_get('@user').errors).not_to be_empty
       end
     end
   end

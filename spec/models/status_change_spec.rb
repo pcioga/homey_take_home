@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: status_changes
@@ -32,13 +34,15 @@ RSpec.describe StatusChange, type: :model do
   end
 
   describe 'enums' do
-    it { should define_enum_for(:status).with_values(
-      not_started: 0,
-      in_progress: 1,
-      on_hold: 2,
-      in_review: 3,
-      completed: 4,
-      archived: 5
-    ) }
+    it {
+      should define_enum_for(:status).with_values(
+        not_started: 0,
+        in_progress: 1,
+        on_hold: 2,
+        in_review: 3,
+        completed: 4,
+        archived: 5
+      )
+    }
   end
 end

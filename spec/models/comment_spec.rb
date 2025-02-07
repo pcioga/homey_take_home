@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -31,4 +33,3 @@ RSpec.describe Comment, type: :model do
     it { should validate_presence_of(:content) }
   end
 end
-

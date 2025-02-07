@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  constraints(lambda { |req| req.session[:user_id].present? }) do
-    root to: "projects#index", as: :authenticated_root
+  constraints(->(req) { req.session[:user_id].present? }) do
+    root to: 'projects#index', as: :authenticated_root
   end
 
-  root to: "home#index"
-  
-  get "/signup", to: "users#new"
-  post "/signup", to: "users#create"
+  root to: 'home#index'
 
-  get "/login", to: "sessions#new"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
 
-  resources :users, only: [:new, :create]
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+  resources :users, only: %i[new create]
 end

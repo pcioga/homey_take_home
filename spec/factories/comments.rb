@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -21,7 +23,7 @@
 #
 FactoryBot.define do
   factory :comment do
-    content { "This is a sample comment." }
+    content { 'This is a sample comment.' }
     association :project
     association :user
   end

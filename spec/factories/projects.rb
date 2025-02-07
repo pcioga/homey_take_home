@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: projects
@@ -11,7 +13,7 @@
 #
 FactoryBot.define do
   factory :project do
-    name { "Project Alpha" }
+    name { 'Project Alpha' }
     association :project_manager, factory: :user
   end
 end
