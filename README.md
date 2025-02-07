@@ -4,7 +4,11 @@
 
 I always try to have in mind the JTBD (jobs to be done) framework approach when trying to figure what are the main motivations to develop any feature.
 
-That said I tried to identify the core job and its main tasks:Main Job: enable users to track and manage the progress of a project through a conversation history
+That said I tried to identify the core job and its main tasks.
+
+Main Job:
+
+Enable users to track and manage the progress of a project through a conversation history
 
 Main tasks:
 

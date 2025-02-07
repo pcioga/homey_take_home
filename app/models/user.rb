@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_secure_password
 
   # Associations
-  has_many :project_users
+  has_many :project_users, dependent: :destroy
   has_many :projects, through: :project_users
   has_many :managed_projects, class_name: 'Project', foreign_key: 'project_manager_id'
 

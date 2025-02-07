@@ -51,6 +51,7 @@ gem "bootsnap", require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'rubocop-rails', require: false
 gem 'tailwindcss-rails'
+gem 'faker'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -76,7 +77,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem 'shoulda-matchers', '~> 5.0'
-  gem 'faker'
   gem 'rails-controller-testing'
 end
 
