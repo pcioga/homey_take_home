@@ -1,5 +1,14 @@
 # Homey take home assignment
 
+## Demo
+
+https://floating-plains-46836-0892d9a65e44.herokuapp.com/
+
+credentials:
+
+    alice@homey.com : password
+    john@homey.com : password
+
 ## Designing the app
 
 I always try to have in mind the JTBD (jobs to be done) framework approach when trying to figure what are the main motivations to develop any feature.
