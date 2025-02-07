@@ -1,14 +1,30 @@
 <h1><%= @project.name %></h1>
-<h2><%= @project.description %></h2>
-<h2><%= @project.project_manager.name %></h2>
-<h2>Team Members:</h2>
-<% @project.users.each do |user| %>
-  <%= user.name %>
-<% end %>
+
+<p><strong>Project Manager:</strong> <%= @project.project_manager.name %></p>
+
+<h2>Team Members</h2>
+<ul>
+  <% @project.users.each do |user| %>
+    <li><%= user.name %></li>
+  <% end %>
+</ul>
 
 <h2>Conversation History</h2>
+<ul>
+  <% (@comments).sort_by(&:created_at).each do |item| %>
+    <li>
+      <% if item.is_a?(Comment) %>
+        <strong><%= item.user.name %></strong>: <%= item.content %>
+      <% else %>
+        <strong><%= item.user.name %></strong> changed the status to <strong><%= item.status.humanize %></strong>.
+      <% end %>
+      <small><%= item.created_at %></small>
+    </li>
+  <% end %>
+</ul>
 
 <h3>Leave a Comment</h3>
-
-<h3>Change Status</h3>
-
+<%= form_with model: [@project, @project.comments.new] do |form| %>
+  <%= form.text_area :content, placeholder: "Your comment" %>
+  <%= form.submit "Post Comment" %>
+<% end %>

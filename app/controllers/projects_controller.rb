@@ -2,15 +2,14 @@
 
 class ProjectsController < ApplicationController
   before_action :set_users, only: %i[new create]
+  before_action :set_project, only: %i[show]
 
   def index
     @projects = current_user.projects
   end
 
   def show
-    @project = Project.find(params[:id])
     @comments = @project.comments.order(created_at: :asc)
-    @status_changes = @project.status_changes.order(created_at: :asc)
   end
 
   def new
@@ -33,6 +32,10 @@ class ProjectsController < ApplicationController
 
   def set_users
     @users = User.where.not(id: current_user.id)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
   end
 
   def add_users_to_project

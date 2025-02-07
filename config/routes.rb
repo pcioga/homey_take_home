@@ -16,5 +16,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new create]
 
-  resources :projects
+  resources :projects, only: %i[index show new create] do
+    resources :comments, only: [:create]
+  end
 end
