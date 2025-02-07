@@ -4,6 +4,10 @@ class CommentsController < ApplicationController
   before_action :set_project
 
   def create
+    unless @project.users.include?(current_user)
+      redirect_to @project, alert: 'You are not a member of this project and cannot comment.' and return
+    end
+
     @comment = @project.comments.new(comment_params)
     @comment.user = current_user
 

@@ -1,5 +1,6 @@
 <h1><%= @project.name %></h1>
-
+<p><%= @project.description %></p>
+<p><%= @status.humanize %></p>
 <p><strong>Project Manager:</strong> <%= @project.project_manager.name %></p>
 
 <h2>Team Members</h2>
@@ -11,7 +12,7 @@
 
 <h2>Conversation History</h2>
 <ul>
-  <% (@comments).sort_by(&:created_at).each do |item| %>
+  <% (@comments + @status_changes).sort_by(&:created_at).each do |item| %>
     <li>
       <% if item.is_a?(Comment) %>
         <strong><%= item.user.name %></strong>: <%= item.content %>
@@ -27,4 +28,12 @@
 <%= form_with model: [@project, @project.comments.new] do |form| %>
   <%= form.text_area :content, placeholder: "Your comment" %>
   <%= form.submit "Post Comment" %>
+<% end %>
+
+<% if @project.project_manager == current_user %>
+  <h3>Change Status</h3>
+  <%= form_with model: [@project, @project.status_changes.new] do |form| %>
+    <%= form.select :status, StatusChange.statuses.keys.map { |s| [s.humanize, s] }, selected: @status %>
+    <%= form.submit "Update Status" %>
+  <% end %>
 <% end %>
